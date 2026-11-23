@@ -1,6 +1,7 @@
-// Realce de sintaxe para os blocos ```python do site: um tokenizador pequeno, sem biblioteca.
-// Cada token recebe uma classe (tk-k palavra-chave, tk-s texto, tk-c comentário, tk-n número,
-// tk-f nome de função, tk-b função embutida, tk-ev propriedade do ev). As cores ficam em globals.css.
+// Realce de sintaxe para os blocos ```python e para o código em linha: um tokenizador pequeno,
+// sem biblioteca. Cada token recebe uma classe (tk-k palavra-chave, tk-s texto, tk-c comentário,
+// tk-n número, tk-f nome de função, tk-b função embutida, tk-ev propriedade do ev, tk-ws campo do
+// Wireshark, tk-err nome de erro, tk-ip endereço IP). As cores ficam em globals.css.
 
 export type Token = { t: string; s: string }
 
@@ -8,6 +9,9 @@ const PADROES: [string, RegExp][] = [
   ["c", /#[^\n]*/y],
   ["s", /[bf]?("(?:\\.|[^"\\\n])*"|'(?:\\.|[^'\\\n])*')/y],
   ["ev", /\bev\.[A-Za-z_]\w*/y],
+  ["ws", /\b(?:ip|tcp|mbtcp|modbus|s7comm|frame|tpkt|cotp|arp|_ws)\.[a-z_][\w.]*/y],
+  ["err", /\b[A-Z][A-Za-z]*Error\b/y],
+  ["ip", /(?:\b\d{1,3}(?:\.\d{1,3}){3}\b|(?<![\w.])\.\d{1,3}\b)/y],
   ["n", /\b(?:0x[0-9a-fA-F]+|\d+(?:\.\d+)?)\b/y],
   ["k", /\b(?:def|return|if|elif|else|for|while|in|not|and|or|is|None|True|False|import|from|as|break|continue|pass|lambda|class|with|try|except)\b/y],
   ["b", /\b(?:len|any|all|set|dict|list|print|int|range|str|bytes|sorted)\b(?=\()/y],

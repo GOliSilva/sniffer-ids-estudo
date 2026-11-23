@@ -10,6 +10,10 @@ import medidas from "~/content/imagens.json"
 import { aviso, papel } from "~/lib/cores"
 import { remarkDiretivas } from "~/lib/diretivas"
 import { linhas, realcar } from "~/lib/realce"
+import { GRUPOS } from "~/lib/referencia"
+
+// nomes das propriedades do ev: em código em linha, sozinhos, ganham a cor do ev
+const PROPS = new Set(["ev", ...GRUPOS.flatMap((g) => g.props.map((p) => p.nome))])
 
 // bloco ```python: cores de sintaxe e uma linha por <span> (os números vêm do CSS)
 function CodigoPython({ texto }: { texto: string }) {
@@ -125,8 +129,20 @@ export function Md({ children }: { children: string }) {
         remarkPlugins={PLUGINS}
         rehypePlugins={[rehypeRaw, [rehypeKatex, { throwOnError: false, strict: false }]]}
         components={{
-          code: ({ className, children }) =>
-            /language-python/.test(className || "") ? <CodigoPython texto={String(children)} /> : <code className={className}>{children}</code>,
+          code: ({ className, children }) => {
+            const texto = String(children)
+            if (/language-python/.test(className || "")) return <CodigoPython texto={texto} />
+            // bloco sem linguagem (terminal, saída do sensor): sem cores
+            if (className || texto.includes("\n")) return <code className={className}>{children}</code>
+            // em linha: arquivo e comando ficam na cor do texto; o resto ganha cor por tipo
+            if (/\.(py|pcap|zip|txt|csv|md|ps1)\b|^(python|pip|npm|cd) /.test(texto)) return <code className="ic-arq">{texto}</code>
+            if (PROPS.has(texto)) return <code className="tk-ev">{texto}</code>
+            return (
+              <code>
+                {realcar(texto).map((tk, k) => (tk.t ? <span key={k} className={`tk-${tk.t}`}>{tk.s}</span> : tk.s))}
+              </code>
+            )
+          },
           strong: ({ children, node }) => <strong data-papel={papel(textoDe(node))}>{children}</strong>,
           blockquote: ({ children, node }) => <blockquote data-aviso={aviso(textoDe(primeiroForte(node)) || textoDe(node).slice(0, 80))}>{children}</blockquote>,
           img: ({ src, alt }) => {
