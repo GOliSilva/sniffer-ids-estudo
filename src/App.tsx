@@ -5,6 +5,7 @@ import { Indice } from "~/components/Indice"
 import { Md, OFFLINE } from "~/components/Md"
 import { Provas } from "~/components/Provas"
 import { Referencia } from "~/components/Referencia"
+import { Inicio } from "~/components/Inicio"
 import { ZoomProvider } from "~/components/Zoom"
 import { ONDE, porId } from "~/lib/content"
 import { REVISAO } from "~/lib/revisao"
@@ -103,7 +104,8 @@ export default function App() {
             ? mod.curto
             : `${mod.id}. ${mod.curto}`
           : ""
-  const deck = (mod && !mod.corrido) || rota.pag === "revisao"
+  const inicio = mod?.id === "00"
+  const deck = (mod && !mod.corrido && !inicio) || rota.pag === "revisao"
 
   return (
     <ZoomProvider>
@@ -114,7 +116,7 @@ export default function App() {
 
       <div className="2xl:pl-72">
         <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur">
-          <div className={`mx-auto flex h-16 items-center gap-2 px-2 lg:px-8 ${deck ? LARGURA : "max-w-2xl lg:max-w-4xl"}`}>
+          <div className={`mx-auto flex h-16 items-center gap-2 px-2 lg:px-8 ${deck ? LARGURA : "max-w-5xl"}`}>
             <button type="button" aria-label="Abrir índice" className="grid size-11 place-items-center 2xl:hidden" onClick={() => setMenu(true)}>
               <Menu className="size-5" />
             </button>
@@ -158,7 +160,8 @@ export default function App() {
         </header>
         {menu && <Gaveta fechar={() => setMenu(false)} atual={rota.pag === "revisao" ? "rv" : mod?.id} />}
         <main>
-          {mod && !mod.corrido && <Deck key={mod.id} m={mod} cartao={rota.pag === "modulo" ? rota.cartao : undefined} />}
+          {inicio && <Inicio />}
+          {mod && !mod.corrido && !inicio && <Deck key={mod.id} m={mod} cartao={rota.pag === "modulo" ? rota.cartao : undefined} />}
           {rota.pag === "revisao" && <Deck key="rv" m={REVISAO} cartao={rota.cartao} base="#/revisao" />}
           {mod && mod.id === "12" && <Referencia />}
           {mod && mod.corrido && mod.id !== "12" && (

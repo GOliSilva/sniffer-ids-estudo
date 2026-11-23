@@ -90,7 +90,7 @@ function Propriedades({ props }: { props: Prop[] }) {
   )
 }
 
-function Copiar({ texto }: { texto: string }) {
+export function Copiar({ texto }: { texto: string }) {
   const [ok, setOk] = useState(false)
   return (
     <button

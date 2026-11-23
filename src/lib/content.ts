@@ -31,7 +31,7 @@ const arquivos = import.meta.glob("../content/modulos/*.md", { query: "?raw", im
 
 // nome curto de cada módulo no menu: uma linha por arquivo de src/content/modulos
 export const CURTOS: Record<string, string> = {
-  "00": "Roteiro",
+  "00": "Início",
   "01": "A planta e a linha de base",
   "02": "Do pacote ao ev",
   "03": "ev: quem, quando, sentido",
