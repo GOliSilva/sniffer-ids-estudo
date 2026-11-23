@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { ArrowRight, Check, ChevronDown, Copy } from "lucide-react"
 import { MODULOS } from "~/lib/content"
+import { realcar } from "~/lib/realce"
 import { GRUPOS, MEMORIA, MODELOS, NAO_VIRA_EV, type Prop } from "~/lib/referencia"
 import { useSalvo } from "~/lib/storage"
 
@@ -23,7 +24,7 @@ function Linha({ k, v, codigo }: { k: string; v: string; codigo?: boolean }) {
   return (
     <div className="grid grid-cols-[7.5rem_1fr] gap-3 border-t border-border py-2 text-[15px] first:border-t-0">
       <dt className="text-sm font-semibold text-muted-foreground">{k}</dt>
-      <dd className={codigo ? "font-mono text-[13.5px] break-words" : ""}>{v}</dd>
+      <dd className={codigo ? "font-mono text-[13.5px] font-semibold break-words" : ""}>{codigo ? <Cores texto={v} /> : v}</dd>
     </div>
   )
 }
@@ -112,10 +113,21 @@ function Copiar({ texto }: { texto: string }) {
   )
 }
 
+// código com as cores de sintaxe do site, sem caixa em volta
+function Cores({ texto }: { texto: string }) {
+  return (
+    <>
+      {realcar(texto).map((tk, k) => (tk.t ? <span key={k} className={`tk-${tk.t}`}>{tk.s}</span> : tk.s))}
+    </>
+  )
+}
+
 function Codigo({ texto }: { texto: string }) {
   return (
-    <div className="flex items-start gap-1 rounded-lg border border-border bg-muted/70 py-1 pr-1 pl-3">
-      <code className="min-w-0 flex-1 py-1 font-mono text-[13px] leading-relaxed break-words whitespace-pre-wrap">{texto}</code>
+    <div className="flex items-start gap-2">
+      <code className="min-w-0 flex-1 pt-1 font-mono text-[13.5px] leading-relaxed font-semibold break-words whitespace-pre-wrap">
+        <Cores texto={texto} />
+      </code>
       <Copiar texto={texto} />
     </div>
   )

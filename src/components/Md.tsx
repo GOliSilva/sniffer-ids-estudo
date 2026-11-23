@@ -136,7 +136,20 @@ export function Md({ children }: { children: string }) {
             if (className || texto.includes("\n")) return <code className={className}>{children}</code>
             // em linha: arquivo e comando ficam na cor do texto; o resto ganha cor por tipo
             if (/\.(py|pcap|zip|txt|csv|md|ps1)\b|^(python|pip|npm|cd) /.test(texto)) return <code className="ic-arq">{texto}</code>
-            if (PROPS.has(texto)) return <code className="tk-ev">{texto}</code>
+            if (PROPS.has(texto))
+              return (
+                <code>
+                  <span className="tk-ev">{texto}</span>
+                </code>
+              )
+            // mensagens do conferir.py: a cor diz o veredito
+            const veredito = /^ok\b/.test(texto) ? "ic-ok" : /^FALSO POSITIVO/.test(texto) ? "ic-ruim" : /^imprecisa/.test(texto) ? "ic-aviso" : /^não disparou/.test(texto) ? "ic-neutro" : ""
+            if (veredito)
+              return (
+                <code>
+                  <span className={veredito}>{texto}</span>
+                </code>
+              )
             return (
               <code>
                 {realcar(texto).map((tk, k) => (tk.t ? <span key={k} className={`tk-${tk.t}`}>{tk.s}</span> : tk.s))}

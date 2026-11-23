@@ -231,15 +231,15 @@ html { overflow-y: scroll; }
   text-align: right; color: var(--muted-foreground); opacity: 0.55; border-right: 1px solid var(--border); user-select: none;
 }
 /* cores de sintaxe (src/lib/realce.ts), as mesmas dos papéis do site */
-.md .tk-k { color: var(--c-codigo); font-weight: 600; }
-.md .tk-f { color: var(--c-modbus); font-weight: 600; }
-.md .tk-b { color: var(--c-modbus); }
-.md .tk-ev { color: var(--c-s7); }
-.md .tk-s { color: var(--c-permitido); }
-.md .tk-n { color: var(--c-falha); }
-.md .tk-c { color: var(--muted-foreground); font-style: italic; }
-.md .tk-ws, .md .tk-ip { color: var(--c-rede); }
-.md .tk-err { color: var(--c-ataque); }
+.tk-k { color: var(--c-codigo); font-weight: 600; }
+.tk-f { color: var(--c-modbus); font-weight: 600; }
+.tk-b { color: var(--c-modbus); }
+.tk-ev { color: var(--c-s7); }
+.tk-s { color: var(--c-permitido); }
+.tk-n { color: var(--c-falha); }
+.tk-c { color: var(--muted-foreground); font-style: italic; }
+.tk-ws, .tk-ip { color: var(--c-rede); }
+.tk-err { color: var(--c-ataque); }
 
 /* frase-chave: abre o cartão com a ideia principal */
 .md .chave { font-size: 1.16em; line-height: 1.45; font-weight: 600; text-wrap: balance; padding-bottom: 0.2em; }
@@ -441,3 +441,9 @@ html { scrollbar-color: var(--color-grid-strong) var(--color-paper); }
 .enunciado .md > ol > li { padding: 0; border: 0; background: none; box-shadow: none; border-radius: 0; margin-top: 0.4em; }
 .enunciado .md > ol > li::before { content: none; }
 .enunciado .md > ol > li > strong:first-child { display: inline; font-size: 1em; margin: 0; }
+
+/* mensagens do conferir.py: a cor diz o veredito */
+.ic-ok { color: var(--c-permitido); }
+.ic-ruim { color: var(--c-ataque); }
+.ic-aviso { color: var(--c-falha); }
+.ic-neutro { color: var(--muted-foreground); }
