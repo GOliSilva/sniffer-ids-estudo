@@ -213,8 +213,30 @@ html { overflow-y: scroll; }
   overflow-wrap: break-word; box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
 /* bloco de código: rola de lado dentro dele, sem alargar o cartão */
-.md pre { max-width: 100%; overflow-x: auto; }
-.md pre code { display: block; width: max-content; min-width: 100%; white-space: pre; overflow-wrap: normal; }
+.md pre {
+  max-width: 100%; overflow-x: auto; scrollbar-width: thin;
+  background: var(--muted); border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.95em 0; font-size: 14px; line-height: 1.7;
+}
+.md pre code {
+  display: block; width: max-content; min-width: 100%; white-space: pre; overflow-wrap: normal;
+  background: none; border: 0; border-radius: 0; padding: 0 1.25em; font-size: 1em;
+}
+/* python: uma linha por bloco, com o número à esquerda (não entra na cópia) */
+.md pre code.com-linhas { counter-reset: ln; padding-left: 0; }
+.md pre code.com-linhas .ln { display: block; min-height: 1.7em; padding-right: 1.25em; }
+.md pre code.com-linhas .ln::before {
+  counter-increment: ln; content: counter(ln); display: inline-block; width: 2.4em; margin-right: 1em; padding-right: 0.7em;
+  text-align: right; color: var(--muted-foreground); opacity: 0.55; border-right: 1px solid var(--border); user-select: none;
+}
+/* cores de sintaxe (src/lib/realce.ts), as mesmas dos papéis do site */
+.md .tk-k { color: var(--c-codigo); font-weight: 600; }
+.md .tk-f { color: var(--c-modbus); font-weight: 600; }
+.md .tk-b { color: var(--c-modbus); }
+.md .tk-ev { color: var(--c-s7); }
+.md .tk-s { color: var(--c-permitido); }
+.md .tk-n { color: var(--c-falha); }
+.md .tk-c { color: var(--muted-foreground); font-style: italic; }
 
 /* frase-chave: abre o cartão com a ideia principal */
 .md .chave { font-size: 1.16em; line-height: 1.45; font-weight: 600; text-wrap: balance; padding-bottom: 0.2em; }

@@ -9,6 +9,21 @@ import { useZoom } from "~/components/Zoom"
 import medidas from "~/content/imagens.json"
 import { aviso, papel } from "~/lib/cores"
 import { remarkDiretivas } from "~/lib/diretivas"
+import { linhas, realcar } from "~/lib/realce"
+
+// bloco ```python: cores de sintaxe e uma linha por <span> (os números vêm do CSS)
+function CodigoPython({ texto }: { texto: string }) {
+  return (
+    <code className="language-python com-linhas">
+      {linhas(realcar(texto.replace(/\n$/, ""))).map((ln, i) => (
+        <span key={i} className="ln">
+          {ln.map((tk, k) => (tk.t ? <span key={k} className={`tk-${tk.t}`}>{tk.s}</span> : tk.s))}
+          {"\n"}
+        </span>
+      ))}
+    </code>
+  )
+}
 
 const MEDIDAS: Record<string, number[]> = medidas
 
@@ -110,6 +125,8 @@ export function Md({ children }: { children: string }) {
         remarkPlugins={PLUGINS}
         rehypePlugins={[rehypeRaw, [rehypeKatex, { throwOnError: false, strict: false }]]}
         components={{
+          code: ({ className, children }) =>
+            /language-python/.test(className || "") ? <CodigoPython texto={String(children)} /> : <code className={className}>{children}</code>,
           strong: ({ children, node }) => <strong data-papel={papel(textoDe(node))}>{children}</strong>,
           blockquote: ({ children, node }) => <blockquote data-aviso={aviso(textoDe(primeiroForte(node)) || textoDe(node).slice(0, 80))}>{children}</blockquote>,
           img: ({ src, alt }) => {
