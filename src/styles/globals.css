@@ -1,0 +1,418 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Furrow (by request) · mood: aconchegante · redesign: restyle
+ * nav: kept (top bar, drawer index) · signature: the study card as a field-notebook sheet · states: reveal, right/wrong, progress
+ * axes: light/grotesk-sans/warm · posture: committed · contrast: pass · faces: Red Hat Display, Red Hat Text, Literata (reading) · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, the layout is kept by request; the notebook sheet carries the theme · finish-review: subagent · 6 findings · 5 resolved 1 dismissed (weight is 600, checked) */
+/* Hallmark · waive 65 · the prompt pins cream paper, a serif and terracotta · the display stays Red Hat Display and the serif is only the reading face */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/red-hat-display";
+@import "@fontsource-variable/red-hat-text";
+@import "@fontsource-variable/literata";
+@import "./tokens.css";
+@import "./base.css" layer(base);
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-read: var(--font-read);
+  --color-sinal: var(--color-accent);
+  --color-sinal-suave: var(--color-accent-soft);
+  --color-musgo: var(--color-green);
+  --color-musgo-suave: var(--color-green-soft);
+  --color-agua: var(--color-water);
+  --color-agua-suave: var(--color-water-soft);
+  --color-siena: var(--color-contour);
+  --color-siena-suave: var(--color-contour-soft);
+  --color-ameixa: var(--color-plum);
+  --color-ameixa-suave: var(--color-plum-soft);
+  --color-erro: var(--color-error);
+  --color-erro-suave: var(--color-error-soft);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper-2);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-2);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-accent-ink);
+  --secondary: var(--color-paper-3);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-paper-3);
+  --muted-foreground: var(--color-muted);
+  --accent: var(--color-paper-3);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-error);
+  --border: var(--color-rule);
+  --input: var(--color-rule);
+  --ring: var(--color-focus);
+  --chart-1: var(--color-accent);
+  --chart-2: var(--color-green);
+  --chart-3: var(--color-water);
+  --chart-4: var(--color-contour);
+  --chart-5: var(--color-plum);
+  --radius: var(--radius-card);
+  --sidebar: var(--color-paper-2);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-accent);
+  --sidebar-primary-foreground: var(--color-accent-ink);
+  --sidebar-accent: var(--color-paper-3);
+  --sidebar-accent-foreground: var(--color-ink);
+  --sidebar-border: var(--color-rule);
+  --sidebar-ring: var(--color-focus);
+}
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  /* o Tailwind 4 deixa botões com o cursor de seta; tudo o que é clicável mostra a mãozinha */
+  :is(button, [role="button"], [role="radio"], summary, label[for], select):not(:disabled) {
+    cursor: pointer;
+  }
+  :is(button, [role="button"]):disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* ---------- texto do curso ---------- */
+.md { font-family: var(--font-read); font-size: 17px; line-height: 1.68; overflow-wrap: anywhere; }
+.md > * + * { margin-top: 0.8em; }
+.md h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; line-height: 1.3; margin-top: 1.4em; }
+.md h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; line-height: 1.3; margin-top: 1.2em; }
+.md strong { font-weight: 600; }
+.md .chave { font-family: var(--font-read); }
+.md ul { list-style: disc; padding-left: 1.3em; }
+.md ol { list-style: decimal; padding-left: 1.4em; }
+.md li + li { margin-top: 0.3em; }
+.md a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.md blockquote { border: 1px solid var(--color-rule); background: var(--color-paper-2); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-pill); font-size: 16px; color: var(--foreground); }
+.md code { font-family: var(--font-outlier); font-size: 0.88em; background: var(--muted); padding: var(--space-3xs) var(--space-2xs); border-radius: 4px; }
+.md .tabela { overflow-x: auto; margin-inline: calc(-1 * var(--space-md)); padding-inline: var(--space-md); }
+.md table { border-collapse: collapse; font-family: var(--font-body); font-size: 15px; min-width: 100%; }
+.md th, .md td { border-bottom: 1px solid var(--border); padding: var(--space-xs) var(--space-sm) var(--space-xs) 0; text-align: left; vertical-align: middle; }
+.md th { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--muted-foreground); }
+.md .katex { font-size: 1.08em; }
+.md .katex-display { overflow-x: auto; overflow-y: hidden; padding: var(--space-2xs) 0; margin: 0.6em calc(-1 * var(--space-md)); padding-inline: var(--space-md); }
+.md .fig { margin: 1em calc(-1 * var(--space-md)); }
+.md .fig img { display: block; width: 100%; height: auto; background: var(--color-sheet); padding: var(--space-xs); cursor: zoom-in; }
+.md .fig figcaption { text-align: center; font-size: 12px; color: var(--muted-foreground); margin-top: var(--space-2xs); }
+@media (min-width: 700px) {
+  .md .fig { margin-inline: 0; }
+  .md .fig img { border-radius: var(--radius-card); border: 1px solid var(--border); box-shadow: var(--shadow-card); }
+}
+
+/* o publicador do artifact injeta "body{background:#faf9f5;color:#141413}" e ":root{color-scheme:light}"
+   fora de camada, o que ganha do @layer base; aqui o tema do app volta a mandar */
+html, body { background: var(--background) !important; color: var(--foreground) !important; }
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+/* computador: figura não passa de ~60% da altura da tela; texto um pouco maior */
+@media (min-width: 1024px) {
+  .md .fig img { width: auto; max-width: 100%; max-height: 62vh; margin-inline: auto; }
+}
+
+/* o espaço da barra de rolagem fica sempre reservado: a página não "anda" de lado
+   quando um cartão é curto (sem barra) e o seguinte é longo (com barra) */
+html { overflow-y: scroll; }
+
+/* fórmulas maiores e frações com mais respiro */
+.md .katex { font-size: 1.12em; }
+.md .katex-display > .katex { font-size: 1.22em; }
+.md .katex-display { padding-block: 0.5em; }
+.md .katex .mfrac .frac-line { min-height: 0.06em; }
+
+/* computador: figuras sem legenda e mais próximas do texto */
+@media (min-width: 1280px) {
+  .md .fig { margin-block: 0.6em; }
+  .md .fig figcaption { display: none; }
+  /* figuras ao lado do texto na ideia: cabem na tela inteira, sem rolar */
+  .ideia-figs .fig img { max-height: calc(100vh - 15rem); }
+  .ideia-figs .fig + .fig { margin-top: var(--space-md); }
+}
+@media (min-width: 1280px) {
+  .ideia-figs.varias .fig img { max-height: calc((100vh - 16rem) / 2); }
+}
+@media (min-width: 1280px) {
+  /* figura que abre a resolução ou que está na resposta: menor, para os passos aparecerem logo */
+  .passos-intro .fig img, .resposta .fig img { max-height: 38vh; }
+}
+
+/* ---------- transições ---------- */
+/* cartão novo entra deslizando do lado de onde veio (só o conteúdo anda; o resto fica parado) */
+@keyframes entra-da-direita { from { transform: translateX(36px); opacity: 0; } }
+@keyframes entra-da-esquerda { from { transform: translateX(-36px); opacity: 0; } }
+.entra-dir { animation: entra-da-direita 180ms cubic-bezier(.2,.7,.3,1); }
+.entra-esq { animation: entra-da-esquerda 180ms cubic-bezier(.2,.7,.3,1); }
+/* o que é revelado (passo, resposta) surge suavemente */
+@keyframes surge { from { transform: translateY(6px); opacity: 0; } }
+.surge { animation: surge 180ms ease-out; }
+/* o palco do cartão corta o que sai pelos lados, sem criar rolagem lateral */
+.palco { overflow-x: clip; touch-action: pan-y; }
+@media (prefers-reduced-motion: reduce) {
+  .entra-dir, .entra-esq, .surge { animation: none; }
+}
+
+/* ---------- código em linha ---------- */
+.md code, .passos code {
+  font-family: var(--font-outlier); font-size: 0.86em; font-weight: 500;
+  background: var(--muted); color: var(--foreground); padding: var(--space-3xs) var(--space-2xs); border-radius: 4px;
+  border: 1px solid var(--border);
+  /* código longo (comandos) quebra em vez de sair da tela no celular */
+  overflow-wrap: break-word; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+/* bloco de código: rola de lado dentro dele, sem alargar o cartão */
+.md pre { max-width: 100%; overflow-x: auto; }
+.md pre code { display: block; width: max-content; min-width: 100%; white-space: pre; overflow-wrap: normal; }
+
+/* frase-chave: abre o cartão com a ideia principal */
+.md .chave { font-size: 1.16em; line-height: 1.45; font-weight: 600; text-wrap: balance; padding-bottom: 0.2em; }
+.md .chave > * + * { margin-top: 0.4em; }
+
+/* cartão de um termo: nome, definição curta e linhas "rótulo valor" */
+.md .termo { border: 1px solid var(--border); border-radius: var(--radius-entry); padding: 0.85em 1em; background: var(--card); box-shadow: var(--shadow-card); }
+.md .termo > * + * { margin-top: 0.45em; }
+.md .termo + .termo { margin-top: 0.75em; }
+.md .termo-nome { font-family: var(--font-display); font-size: 1.05em; font-weight: 600; color: var(--foreground); }
+.md .termo > p:not(.termo-nome) { font-size: 1em; }
+.md ul.kv { list-style: none; padding: 0.55em 0 0; margin-top: 0.6em; border-top: 1px dashed var(--border); }
+.md ul.kv li > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-sm); align-items: baseline; }
+.md ul.kv li + li { margin-top: 0.25em; }
+.md ul.kv .k { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: var(--muted-foreground); }
+.md ul.kv .v { font-style: normal; }
+@media (max-width: 420px) { .md ul.kv li > div { grid-template-columns: 1fr; gap: 0; } }
+
+/* aprofundamento recolhido */
+.md details.saiba { border-radius: var(--radius-card); background: var(--muted); padding: 0 0.95em; }
+.md details.saiba > summary { cursor: pointer; list-style: none; padding: 0.7em 0; font-family: var(--font-body); font-weight: 600; font-size: 15.5px; display: flex; gap: 0.5em; align-items: center; }
+.md details.saiba > summary::-webkit-details-marker { display: none; }
+.md details.saiba > summary::before { content: "▸"; color: var(--muted-foreground); transition: transform var(--dur-micro) var(--ease-out); }
+.md details.saiba[open] > summary::before { transform: rotate(90deg); }
+.md details.saiba > summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px; }
+.md .saiba-corpo { padding-bottom: 0.9em; font-size: 0.95em; }
+.md .saiba-corpo > * + * { margin-top: 0.7em; }
+
+
+/* ---------- escala de leitura: uma fonte e um ritmo para todas as telas ----------
+   corpo fluido: 17px no celular → ~17,5px no notebook (1366) → ~19px no Full HD.
+   tudo o mais (tabela, rótulo, código, títulos) é proporcional ao corpo, em em. */
+:root {
+  --fs-corpo: clamp(17px, 14.5px + 0.234vw, 19.5px);
+  --fs-pergunta: calc(var(--fs-corpo) * 1.05);
+  --respiro-texto: 0.9em;   /* entre parágrafos e itens de texto */
+  --respiro-bloco: 1.6em;   /* antes e depois de cartões, tabelas, avisos e figuras */
+  --medida: 70ch;           /* largura máxima de uma linha de texto */
+}
+.md { font-size: var(--fs-corpo); line-height: 1.65; }
+.md > * + * { margin-top: var(--respiro-texto); }
+.md > :is(.termo, .termos, .tabela, details, blockquote, .fig, .katex-display) { margin-block: var(--respiro-bloco); }
+.md > :first-child { margin-top: 0; }
+.md > :last-child { margin-bottom: 0; }
+.md :is(p, ul, ol, blockquote) { max-width: var(--medida); }
+.md li + li { margin-top: 0.4em; }
+.md h2 { font-size: 1.3em; margin-top: 1.9em; }
+.md h3 { font-size: 1.12em; margin-top: 1.5em; }
+.md blockquote { font-size: 0.95em; padding: 0.8em 1.1em; }
+
+/* frase-chave: separada do resto por um respiro claro */
+.md .chave { font-size: 1.2em; line-height: 1.42; max-width: 62ch; margin-bottom: 1.3em; }
+.md .chave p { max-width: none; }
+
+/* tabelas: legíveis e com linhas que respiram */
+.md table { font-size: 0.92em; line-height: 1.5; }
+.md th, .md td { padding: 0.6em 1.1em 0.6em 0; }
+.md th { font-size: max(13px, 0.8em); }
+.md td code, .md th code { font-size: 0.92em; }
+
+/* cartões de termo: em grade quando há vários seguidos e a tela permite */
+.md .termos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: 1em; align-items: start; }
+.md .termos > .termo, .md .termo + .termo { margin: 0; }
+.md .termo { padding: 1.1em 1.3em 1.15em; border-radius: var(--radius-entry); }
+.md .termo > * + * { margin-top: 0.55em; }
+.md .termo p { max-width: none; }
+
+.md ul.kv { margin-top: 0.85em; padding-top: 0.75em; }
+.md ul.kv li + li { margin-top: 0.5em; }
+.md ul.kv { display: grid; grid-template-columns: fit-content(9em) minmax(0, 1fr); column-gap: 1em; row-gap: 0.5em; }
+.md ul.kv li, .md ul.kv li > div { display: contents; }
+.md ul.kv li + li { margin-top: 0; }
+.md ul.kv .k { font-size: max(14px, 0.84em); }
+@media (max-width: 420px) { .md ul.kv { grid-template-columns: 1fr; row-gap: 0.15em; } .md ul.kv .v { margin-bottom: 0.55em; } }
+
+/* código em linha proporcional ao texto */
+.md code, .passos code { font-size: 0.86em; padding: 0.08em 0.4em; }
+
+/* "Saiba mais": área de toque confortável */
+.md details.saiba { padding: 0 1.15em; }
+.md details.saiba > summary { font-size: 0.95em; padding: 0.85em 0; min-height: 44px; }
+.md .saiba-corpo { padding-bottom: 1.1em; }
+.md .saiba-corpo > * + * { margin-top: var(--respiro-texto); }
+
+/* passo a passo: pergunta e resposta na mesma escala do corpo */
+.passos .pergunta { font-size: var(--fs-pergunta); }
+.passos .md { font-size: var(--fs-corpo); }
+
+/* figura horizontal no topo do cartão (tela larga): grande, mas sem empurrar o texto para fora da tela */
+.ideia-topo { margin-bottom: 1.6rem; }
+.ideia-topo .fig { margin: 0; }
+.ideia-topo .fig img { max-height: 52vh; width: auto; max-width: 100%; margin-inline: auto; }
+
+/* ---------- cores por papel: as mesmas das figuras (src/lib/cores.ts; legenda no roteiro) ---------- */
+[data-papel="ataque"] { --c: var(--c-ataque); }
+[data-papel="falha"] { --c: var(--c-falha); }
+[data-papel="s7"] { --c: var(--c-s7); }
+[data-papel="modbus"] { --c: var(--c-modbus); }
+[data-papel="rede"] { --c: var(--c-rede); }
+[data-papel="permitido"] { --c: var(--c-permitido); }
+[data-papel="codigo"] { --c: var(--c-codigo); }
+
+/* negrito com papel: a palavra ganha a cor do tipo de processo */
+strong[data-papel] { color: var(--c, inherit); }
+/* sentido de giro: seta em vez de mais uma cor */
+
+/* cartão de termo com papel: nome e borda na cor dele */
+.md .termo[data-papel] { border-color: color-mix(in oklch, var(--c) 45%, var(--border)); background: color-mix(in oklch, var(--c) 6%, var(--card)); }
+.md .termo[data-papel] .termo-nome { color: var(--c); }
+
+/* avisos: correção do professor, erro comum, conferência com o gabarito */
+.md blockquote[data-aviso] { --a: var(--c-professor); border-color: color-mix(in oklch, var(--a) 40%, var(--color-rule)); background: color-mix(in oklch, var(--a) 8%, var(--color-paper-2)); }
+.md blockquote[data-aviso="professor"] { --a: var(--c-professor); }
+.md blockquote[data-aviso="erro"] { --a: var(--c-erro); }
+.md blockquote[data-aviso="confere"] { --a: var(--c-confere); }
+.md blockquote[data-aviso="nota"] { --a: var(--muted-foreground); }
+.md blockquote[data-aviso] > p:first-child > strong:first-child { color: var(--a); }
+/* rótulo de linha "rótulo valor" com papel */
+.md ul.kv .k[data-papel] { color: var(--c); }
+
+/* tela larga: cartões de termo mais compactos (o espaço vertical é o que falta no notebook) */
+@media (min-width: 1280px) {
+  .md .termo { padding: 0.85em 1.15em 0.9em; }
+  .md .termo > * + * { margin-top: 0.4em; }
+  .md ul.kv { margin-top: 0.6em; padding-top: 0.55em; row-gap: 0.3em; }
+  .md > :is(.termo, .termos, .tabela, details, blockquote, .fig, .katex-display) { margin-block: 1.2em; }
+  .md .chave { margin-bottom: 1em; }
+  .md .termos { gap: 0.8em; }
+}
+
+/* tela larga: figura ao lado do texto cabe no que sobra da altura (cabeçalho, título e botões descontados) */
+@media (min-width: 1280px) {
+  .ideia-figs .fig img { max-height: calc(100vh - 17rem); }
+  .ideia-figs.varias .fig img { max-height: calc((100vh - 19rem) / 2); }
+}
+/* tela baixa (notebook de 768 px): título e respiros menores, para o cartão caber */
+@media (min-width: 1280px) and (max-height: 860px) {
+  article h2 { font-size: 27px !important; margin-bottom: 0.9rem !important; }
+  :root { --fs-corpo: clamp(16.5px, 14px + 0.22vw, 18px); }
+  .md .chave { font-size: 1.12em; margin-bottom: 0.8em; }
+  .md > :is(.termo, .termos, .tabela, details, blockquote, .fig, .katex-display) { margin-block: 1em; }
+  .ideia-figs .fig img { max-height: calc(100vh - 17.5rem); }
+  .ideia-figs.varias .fig img { max-height: calc((100vh - 17.5rem) / 2); }
+}
+
+/* hierarquia: o título é o maior e mais pesado; a frase-chave é um parágrafo de abertura,
+   em peso normal, com só as palavras importantes em negrito */
+.md .chave { font-weight: 400; color: color-mix(in oklch, var(--foreground) 90%, var(--muted-foreground)); }
+.md .chave strong { font-weight: 600; color: var(--foreground); }
+.md .chave strong[data-papel] { color: var(--c); }
+/* cartões de termo da mesma linha com a mesma altura */
+.md .termos { align-items: stretch; }
+
+
+/* ---------- lista numerada = etapas: cada passo vira um cartão com número grande, lado a lado quando cabe ---------- */
+.md > ol { list-style: none; padding: 0; counter-reset: etapa; display: grid; gap: 0.9em; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); max-width: none; }
+.md > ol > li { counter-increment: etapa; position: relative; margin: 0; padding: 1em 1.1em 1.05em; border: 1px solid var(--border); border-radius: var(--radius-entry); background: var(--card); line-height: 1.55; box-shadow: var(--shadow-card); }
+.md > ol > li::before { content: counter(etapa); display: grid; place-items: center; width: 2em; height: 2em; margin-bottom: 0.6em; border-radius: 999px; font-family: var(--font-display); font-weight: 600; font-size: 0.95em; color: var(--primary-foreground); background: var(--primary); }
+.md > ol > li > strong:first-child { display: block; font-size: 1.08em; margin-bottom: 0.25em; }
+/* "Para levar": colunas um pouco mais largas, para os 7 cartões caberem em 2 fileiras na largura toda e sem rolar */
+.resumo .md > ol { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+
+/* figura PNG com transparência: sem o quadro claro, só uma borda branca que acompanha o contorno */
+.md .fig img[src$=".png"] { background: transparent; padding: 0; border: 0; border-radius: 0; box-shadow: none;
+  filter: drop-shadow(2px 0 0 var(--color-sheet)) drop-shadow(-2px 0 0 var(--color-sheet)) drop-shadow(0 2px 0 var(--color-sheet)) drop-shadow(0 -2px 0 var(--color-sheet)); }
+
+/* fórmula nunca quebra no meio; valor do cartão rola de lado em vez de quebrar */
+.md .katex, .md .katex * { overflow-wrap: normal; word-break: normal; }
+.md ul.kv .v { min-width: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
+
+/* tabelas no celular: sem quebrar palavras no meio; tabela larga rola dentro do cartão */
+@media (max-width: 520px) {
+  .md table { font-size: 0.84em; }
+  .md th, .md td { padding: 0.5em 0.7em 0.5em 0; word-break: normal; overflow-wrap: normal; hyphens: manual; }
+  .md td:first-child, .md th:first-child { min-width: 5.5em; }
+}
+
+/* Hallmark · títulos equilibrados, seleção e barra de rolagem no papel do tema */
+article h2, .md h2, .md h3 { text-wrap: balance; overflow-wrap: break-word; min-width: 0; }
+::selection { background: var(--color-accent-soft); color: var(--color-ink); }
+html { scrollbar-color: var(--color-grid-strong) var(--color-paper); }
+.md td { min-width: 6.5em; }
+
+/* Hallmark · assinatura: a folha do caderno de campo (Furrow) em termos e etapas — anel de tinta, quadriculado de 8px, sombra de folha */
+.md .termo, .md > ol > li {
+  border: 1px solid color-mix(in oklch, var(--color-ink) 22%, var(--color-rule));
+  box-shadow: var(--shadow-lift);
+  background-color: var(--card);
+  background-image: linear-gradient(var(--color-grid) 1px, transparent 1px), linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 8px 8px; background-position: -1px -1px;
+}
+.md .termo[data-papel] { background-color: color-mix(in oklch, var(--c) 6%, var(--card)); }
+/* blocos curtos: na face de interface, peso normal; a serifa fica para a leitura corrida */
+.md > ol > li { font-family: var(--font-body); font-size: 0.94em; line-height: 1.5; }
+.md > ol > li > strong:first-child, .md .termo-nome { font-family: var(--font-display); font-weight: 600; }
+
+/* enunciados e gabaritos: lista numerada comum (os cartões numerados são para as ideias) */
+.enunciado .md > ol { display: block; list-style: decimal; padding-left: 1.5em; max-width: var(--medida); }
+.enunciado .md > ol > li { padding: 0; border: 0; background: none; box-shadow: none; border-radius: 0; margin-top: 0.4em; }
+.enunciado .md > ol > li::before { content: none; }
+.enunciado .md > ol > li > strong:first-child { display: inline; font-size: 1em; margin: 0; }

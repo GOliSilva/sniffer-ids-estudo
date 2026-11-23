@@ -1,0 +1,60 @@
+/* Hallmark · Furrow tokens with a mood note ("aconchegante"): warmer manila, terracotta signal, moss green,
+   softer corners and warm shadows; a low-contrast reading serif for the long text. Light by default, lamp-lit dark in .dark */
+:root {
+  color-scheme: light;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+  --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1.2rem; --text-title: 1rem; --text-lead: 1rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* papel manila quente, tinta castanho-escura */
+  --color-paper: oklch(95.4% 0.021 80); --color-paper-2: oklch(98.6% 0.011 84); --color-paper-3: oklch(91.5% 0.027 78);
+  --color-ink: oklch(23% 0.016 55); --color-ink-2: oklch(33% 0.018 55); --color-muted: oklch(45% 0.022 60); --color-rule: oklch(86.5% 0.022 76);
+  /* um sinal: terracota (ação principal, seleção, foco) */
+  --color-accent: oklch(52% 0.13 40); --color-accent-ink: oklch(98.6% 0.011 84); --color-accent-soft: oklch(91.5% 0.045 52); --color-focus: oklch(52% 0.14 40);
+  /* musgo para o que está certo e para a ideia; água e siena do mapa de levantamento */
+  --color-green: oklch(46% 0.085 135); --color-green-soft: oklch(92.5% 0.035 128);
+  --color-water: oklch(47% 0.06 235); --color-water-soft: oklch(93% 0.02 230);
+  --color-contour: oklch(50% 0.09 58); --color-contour-soft: oklch(92% 0.035 70);
+  --color-plum: oklch(42% 0.07 345); --color-plum-soft: oklch(93% 0.02 345);
+  --color-error: oklch(50% 0.17 28); --color-error-soft: oklch(93% 0.03 28); --color-success: var(--color-green);
+  --color-grid: oklch(90% 0.018 80); --color-grid-strong: oklch(85% 0.022 78); --color-sheet: oklch(99.2% 0.006 84);
+
+  --font-display: "Red Hat Display Variable", "Red Hat Text Variable", ui-sans-serif, sans-serif;
+  --font-body: "Red Hat Text Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-read: "Literata Variable", Georgia, serif;
+  --font-outlier: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --radius-card: 16px; --radius-entry: 18px; --radius-pill: 10px; --rule-hair: 1px;
+  --shadow-card: 0 1px 2px oklch(30% 0.03 55 / 0.07), 0 12px 26px -16px oklch(30% 0.04 55 / 0.26);
+  --shadow-lift: 0 1px 1px oklch(30% 0.03 55 / 0.08), 0 3px 6px -2px oklch(30% 0.03 55 / 0.08), 0 22px 40px -22px oklch(30% 0.04 55 / 0.34);
+  --tracking-display: -0.02em; --display-weight: 600;
+
+  /* cores por papel (texto e figuras) e avisos */
+  --c-ataque: oklch(50% 0.16 28); --c-falha: oklch(52% 0.13 55); --c-s7: oklch(50% 0.09 88);
+  --c-modbus: oklch(48% 0.12 245); --c-rede: oklch(45% 0.06 245); --c-permitido: oklch(47% 0.11 138); --c-codigo: oklch(47% 0.13 318);
+  --c-professor: oklch(58% 0.13 72); --c-erro: oklch(52% 0.17 28); --c-confere: oklch(50% 0.11 150);
+}
+
+/* mesa à luz de abajur: papel escuro quente, tinta creme */
+.dark {
+  color-scheme: dark;
+  --color-paper: oklch(20.5% 0.013 60); --color-paper-2: oklch(24.5% 0.015 60); --color-paper-3: oklch(28.5% 0.017 60);
+  --color-ink: oklch(93% 0.02 82); --color-ink-2: oklch(86% 0.022 80); --color-muted: oklch(73% 0.022 76); --color-rule: oklch(34% 0.017 60);
+  --color-accent: oklch(70% 0.12 42); --color-accent-ink: oklch(20% 0.015 55); --color-accent-soft: oklch(32% 0.05 42); --color-focus: oklch(72% 0.13 42);
+  --color-green: oklch(74% 0.09 132); --color-green-soft: oklch(30% 0.04 132);
+  --color-water: oklch(74% 0.07 232); --color-water-soft: oklch(29% 0.03 232);
+  --color-contour: oklch(75% 0.09 62); --color-contour-soft: oklch(30% 0.035 62);
+  --color-plum: oklch(76% 0.07 345); --color-plum-soft: oklch(29% 0.03 345);
+  --color-error: oklch(72% 0.14 28); --color-error-soft: oklch(30% 0.05 28);
+  --color-grid: oklch(28% 0.016 60); --color-grid-strong: oklch(33% 0.018 60); --color-sheet: oklch(96% 0.012 84);
+  --shadow-card: 0 1px 2px oklch(5% 0.01 55 / 0.4), 0 12px 26px -16px oklch(5% 0.01 55 / 0.6);
+  --shadow-lift: 0 1px 1px oklch(5% 0.01 55 / 0.4), 0 22px 40px -22px oklch(5% 0.01 55 / 0.7);
+  --c-ataque: oklch(76% 0.13 28); --c-falha: oklch(79% 0.12 60); --c-s7: oklch(81% 0.09 88);
+  --c-modbus: oklch(77% 0.1 245); --c-rede: oklch(79% 0.05 245); --c-permitido: oklch(79% 0.11 138); --c-codigo: oklch(79% 0.1 318);
+  --c-professor: oklch(80% 0.12 75); --c-erro: oklch(74% 0.14 28); --c-confere: oklch(79% 0.11 150);
+  /* bichinhos: no escuro, em vez de sombra, um halo claro suave (o cachorro preto não some no papel escuro) */
+}

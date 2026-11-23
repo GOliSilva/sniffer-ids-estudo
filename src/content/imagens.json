@@ -1,0 +1,174 @@
+{
+ "caminho.png": [
+  1420,
+  787
+ ],
+ "planta.png": [
+  1339,
+  738
+ ],
+ "ws_aula01_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula02_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula03_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula04_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula05_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula06_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula07_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula08_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula09_lista.png": [
+  1384,
+  274
+ ],
+ "ws_aula10_lista.png": [
+  1384,
+  274
+ ],
+ "ws_base_lista.png": [
+  1384,
+  274
+ ],
+ "ws_conversas.png": [
+  1184,
+  642
+ ],
+ "ws_endpoints.png": [
+  1184,
+  642
+ ],
+ "ws_endpoints_eth.png": [
+  1184,
+  642
+ ],
+ "ws_escrita.png": [
+  1190,
+  520
+ ],
+ "ws_expert.png": [
+  1184,
+  642
+ ],
+ "ws_hierarquia.png": [
+  1184,
+  642
+ ],
+ "ws_io_graph.png": [
+  1184,
+  642
+ ],
+ "ws_modbus_endereco.png": [
+  1190,
+  520
+ ],
+ "ws_modbus_excecao.png": [
+  1190,
+  520
+ ],
+ "ws_modbus_pergunta.png": [
+  1190,
+  520
+ ],
+ "ws_modbus_resposta.png": [
+  1190,
+  520
+ ],
+ "ws_s7_pergunta.png": [
+  1190,
+  520
+ ],
+ "ws_s7_resposta.png": [
+  1190,
+  520
+ ],
+ "ws_s7_tpkt.png": [
+  1190,
+  520
+ ],
+ "ws_sim01_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim02_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim03_detalhe.png": [
+  1190,
+  520
+ ],
+ "ws_sim03_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim04_detalhe.png": [
+  1190,
+  520
+ ],
+ "ws_sim04_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim05_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim06_detalhe.png": [
+  1190,
+  520
+ ],
+ "ws_sim06_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim07_detalhe.png": [
+  1190,
+  520
+ ],
+ "ws_sim07_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim08_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim09_detalhe.png": [
+  1190,
+  520
+ ],
+ "ws_sim09_lista.png": [
+  1384,
+  274
+ ],
+ "ws_sim10_lista.png": [
+  1384,
+  274
+ ],
+ "ws_unit_id.png": [
+  1190,
+  520
+ ]
+}
